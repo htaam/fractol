@@ -1,4 +1,4 @@
-NAME = fdf
+NAME = fractol
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 MLX =  -lmlx -lm -framework OpenGL -framework AppKit
