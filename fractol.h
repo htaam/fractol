@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:57:38 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/06 17:06:38 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/06 17:44:10 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,15 @@ typedef struct s_numbers
 	float	z_imaginary;
 	float	c_real;
 	float	c_imaginary;
+	float	x;
+	float	y;
 	float	temp;
 	int		x_max;
 	int		y_max;
 }			t_numbers;
 
 void	mandlebrot(int	precision, t_numbers numbers, t_data *imgage);
+void	julia(int percision, t_data *imgage, t_numbers numbers);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
