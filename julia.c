@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   julia.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/07 15:44:25 by tmatias           #+#    #+#             */
+/*   Updated: 2021/07/07 18:06:14 by tmatias          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int	get_julia_iterations(t_numbers numbers, int percision)
@@ -33,14 +45,15 @@ void	julia(int percision, t_data *imgage, t_numbers numbers)
 		y = 0;
 		while (y < numbers.y_max)
 		{
-			numbers.z_real = (x - (numbers.x_max / 2)) / (numbers.y_max / 4);
+			numbers.z_real = (x - (numbers.x_max / 2)) / (numbers.y_max / 1);
 			numbers.z_imaginary
-				= (y - (numbers.y_max / 2)) / (numbers.y_max / 4);
+				= (y - (numbers.y_max / 2)) / (numbers.y_max / 1);
 			iterations = get_julia_iterations(numbers, percision);
 			if (iterations < percision)
 			{
 				my_mlx_pixel_put(imgage, x, y,
-					(0x00000000 + ((iterations + 1) * 5000)));
+					(create_trgb(0, 7 * (iterations) + 50, 5 * (iterations),
+							3 * (iterations))));
 			}
 			y++;
 		}

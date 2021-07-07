@@ -1,6 +1,6 @@
 NAME = fractol
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3	
 MLX =  -lmlx -lm -framework OpenGL -framework AppKit
 SRC = $(wildcard  *.c)
 MATH = -lm
