@@ -6,13 +6,13 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 15:44:11 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/07 18:06:30 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/10 17:36:12 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	get_mandel_iterations(int percision, t_numbers numbers)
+int	get_mandel_iterations(int percision, t_numbers numbers, float zoom_factor)
 {
 	int	iterations;
 
@@ -21,16 +21,17 @@ int	get_mandel_iterations(int percision, t_numbers numbers)
 		&& iterations < percision)
 	{
 		numbers.temp = pow(numbers.z_real, 2) - pow(numbers.z_imaginary, 2)
-			+ (numbers.c_real / (numbers.y_max / 2.42));
+			+ (numbers.c_real / (numbers.y_max / (2 * zoom_factor)));
 		numbers.z_imaginary = 2 * numbers.z_real * numbers.z_imaginary
-			+ (numbers.c_imaginary / (numbers.y_max / 2.42));
+			+ (numbers.c_imaginary / (numbers.y_max / (2 * zoom_factor)));
 		numbers.z_real = numbers.temp;
 		iterations++;
 	}
 	return (iterations);
 }
 
-void	mandlebrot(int	precision, t_numbers numbers, t_data *imgage)
+void	mandlebrot(int	precision, t_numbers numbers, t_data *imgage,
+	float zoom_factor)
 {
 	int	iterations;
 
@@ -42,7 +43,7 @@ void	mandlebrot(int	precision, t_numbers numbers, t_data *imgage)
 		{
 			numbers.z_real = 0;
 			numbers.z_imaginary = 0;
-			iterations = get_mandel_iterations(precision, numbers);
+			iterations = get_mandel_iterations(precision, numbers, zoom_factor);
 			if ((iterations < precision))
 			{
 				my_mlx_pixel_put(imgage, numbers.c_real + (numbers.x_max / 2),

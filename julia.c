@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 15:44:25 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/07 18:06:14 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/10 17:56:39 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	get_julia_iterations(t_numbers numbers, int percision)
 	return (iterations);
 }
 
-void	julia(int percision, t_data *imgage, t_numbers numbers)
+void	julia(int percision, t_data *imgage, t_numbers numbers,
+	float zoom_factor)
 {
 	float	x;
 	float	y;
@@ -45,15 +46,15 @@ void	julia(int percision, t_data *imgage, t_numbers numbers)
 		y = 0;
 		while (y < numbers.y_max)
 		{
-			numbers.z_real = (x - (numbers.x_max / 2)) / (numbers.y_max / 1);
-			numbers.z_imaginary
-				= (y - (numbers.y_max / 2)) / (numbers.y_max / 1);
+			numbers.z_real = (x - (numbers.x_max / 2))
+				/ (numbers.y_max / (2 * zoom_factor));
+			numbers.z_imaginary = (y - (numbers.y_max / 2))
+				/ (numbers.y_max / (2 * zoom_factor));
 			iterations = get_julia_iterations(numbers, percision);
 			if (iterations < percision)
 			{
-				my_mlx_pixel_put(imgage, x, y,
-					(create_trgb(0, 7 * (iterations) + 50, 5 * (iterations),
-							3 * (iterations))));
+				my_mlx_pixel_put(imgage, x, y, (create_trgb(0, 7 * (iterations)
+							+ 50, 5 * (iterations), 3 * (iterations))));
 			}
 			y++;
 		}
