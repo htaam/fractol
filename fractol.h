@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:57:38 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/10 17:56:06 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/12 16:33:07 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # ifndef DIGITS_AND_STUFF
 #  define DIGITS_AND_STUFF "-.0123456789"
 # endif
+
+typedef struct s_vars
+{
+	void	*mlx;
+	void	*win;
+}				t_vars;
 
 typedef struct s_data
 {

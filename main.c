@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:57:56 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/10 18:07:45 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/12 17:03:13 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,18 @@ void	handdle_inputs(t_inputs *inputs, t_numbers *numbers, char	**argv)
 		invalid_input();
 }
 
+int	key_hook(int keycode, t_vars *vars)
+{
+	if (vars)
+		;
+	if (keycode == 53)
+		exit (0);
+	return (keycode);
+}
+
 int	main(int argc, char **argv)
 {
-	void		*mlx;
-	void		*mlx_win;
+	t_vars		vars;
 	t_data		imgage;
 	t_numbers	numbers;
 	t_inputs	inputs;
@@ -81,9 +89,9 @@ int	main(int argc, char **argv)
 	numbers.x_max = 1920;
 	numbers.y_max = 1080;
 	handdle_inputs(&inputs, &numbers, argv);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, numbers.x_max, numbers.y_max, "Fractal");
-	imgage.img = mlx_new_image(mlx, numbers.x_max, numbers.y_max);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, numbers.x_max, numbers.y_max, "Fractal");
+	imgage.img = mlx_new_image(vars.mlx, numbers.x_max, numbers.y_max);
 	imgage.addr = mlx_get_data_addr(imgage.img, &imgage.bits_per_pixel,
 			&imgage.line_length, &imgage.endian);
 	numbers.order = 2;
@@ -91,7 +99,8 @@ int	main(int argc, char **argv)
 		mandlebrot(numbers.percision, numbers, &imgage, 1.5);
 	else if (inputs.set_type == 2)
 		julia(numbers.percision, &imgage, numbers, 1.1);
-	mlx_put_image_to_window(mlx, mlx_win, imgage.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(vars.mlx, vars.win, imgage.img, 0, 0);
+	mlx_key_hook(vars.win, key_hook, &vars);
+	mlx_loop(vars.mlx);
 	return (0);
 }
