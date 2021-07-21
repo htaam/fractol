@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 15:44:25 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/10 17:56:39 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/21 16:08:06 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	julia(int percision, t_data *imgage, t_numbers numbers,
 	int		iterations;
 
 	x = 0;
-	iterations = 0;
 	while (x < numbers.x_max)
 	{
 		y = 0;
@@ -53,8 +52,9 @@ void	julia(int percision, t_data *imgage, t_numbers numbers,
 			iterations = get_julia_iterations(numbers, percision);
 			if (iterations < percision)
 			{
-				my_mlx_pixel_put(imgage, x, y, (create_trgb(0, 7 * (iterations)
-							+ 50, 5 * (iterations), 3 * (iterations))));
+				my_mlx_pixel_put(imgage, x,
+					y, (create_trgb(0, 2.5 * (iterations) + 50,
+							2.5 * (iterations), 0.3 * (iterations + 2))));
 			}
 			y++;
 		}

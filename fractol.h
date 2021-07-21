@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:57:38 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/12 16:33:07 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/21 17:01:58 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@
 # ifndef DIGITS_AND_STUFF
 #  define DIGITS_AND_STUFF "-.0123456789"
 # endif
-
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-}				t_vars;
 
 typedef struct s_data
 {
@@ -59,6 +53,16 @@ typedef struct s_inputs
 	int		set_type;
 }				t_inputs;
 
+typedef struct s_vars
+{
+	void		*mlx;
+	void		*win;
+	float		zoom;
+	t_inputs	input;
+	t_data		image;
+	t_numbers	numbers;
+}				t_vars;
+
 void			mandlebrot(int	precision, t_numbers numbers, t_data *imgage,
 					float zoom_factor);
 void			julia(int percision, t_data *imgage, t_numbers numbers,
@@ -71,5 +75,9 @@ void			invalid_input(void);
 long long int	ft_atoi_with_error(const char *str);
 float			ft_atol(char	*input_str);
 int				is_float(char	*ptr);
+void			handdle_inputs(t_inputs *inputs,
+					t_numbers *numbers, char	**argv);
+void			zoom_in(t_vars *vars);
+void			zoom_out(t_vars *vars);
 
 #endif

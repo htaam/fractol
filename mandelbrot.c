@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 15:44:11 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/10 17:36:12 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/21 16:07:35 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,29 @@ int	get_mandel_iterations(int percision, t_numbers numbers, float zoom_factor)
 void	mandlebrot(int	precision, t_numbers numbers, t_data *imgage,
 	float zoom_factor)
 {
-	int	iterations;
+	int		iterations;
+	float	x;
+	float	y;
 
-	numbers.c_real = 0 - (numbers.x_max / 2);
-	while (numbers.c_real < numbers.x_max / 2)
+	x = 0;
+	while (x < numbers.x_max)
 	{
-		numbers.c_imaginary = 0 - (numbers.y_max / 2);
-		while (numbers.c_imaginary < numbers.y_max / 2)
+		y = 0;
+		while (y < numbers.y_max)
 		{
+			numbers.c_real = x - (numbers.x_max / 2);
+			numbers.c_imaginary = y - (numbers.y_max / 2);
 			numbers.z_real = 0;
 			numbers.z_imaginary = 0;
 			iterations = get_mandel_iterations(precision, numbers, zoom_factor);
 			if ((iterations < precision))
 			{
-				my_mlx_pixel_put(imgage, numbers.c_real + (numbers.x_max / 2),
-					numbers.c_imaginary + (numbers.y_max / 2),
-					(create_trgb(0, 7 * (iterations + 2) + 50,
-							5 * (iterations + 2), 3 * (iterations + 2))));
+				my_mlx_pixel_put(imgage, x,
+					y, (create_trgb(0, 2.5 * (iterations) + 50,
+							2.5 * (iterations), 0.3 * (iterations + 2))));
 			}
-			numbers.c_imaginary++;
+			y++;
 		}
-		numbers.c_real++;
+		x++;
 	}
 }
