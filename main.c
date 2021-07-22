@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:57:56 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/21 17:03:33 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/22 17:18:55 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	key_hook(int keycode, t_vars *vars)
 		;
 	if (keycode == 53)
 		exit (0);
+	if (keycode == 69)
+		zoom_in(vars);
+	if (keycode == 78)
+		zoom_out(vars);
+	printf("key code = %d\n", keycode);
 	return (keycode);
 }
 
@@ -45,10 +50,9 @@ int	mouse_hook(int mouse_code, t_vars *vars)
 {
 	if (vars)
 		;
-	if (mouse_code == 4)
-		zoom_out(vars);
-	if (mouse_code == 5)
-		zoom_in(vars);
+	/*if (mouse_code == 4)
+		zoom_in(vars);*/
+	printf("mouse code = %d\n", mouse_code);
 	return (mouse_code);
 }
 
@@ -59,8 +63,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		invalid_input();
 	vars.zoom = 1;
-	vars.numbers.x_max = 1920;
-	vars.numbers.y_max = 1080;
+	vars.numbers.x_max = 1920 / 2;
+	vars.numbers.y_max = 1080 / 2;
 	handdle_inputs(&vars.input, &vars.numbers, argv);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, vars.numbers.x_max, vars.numbers.y_max, "");

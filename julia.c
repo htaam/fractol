@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 15:44:25 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/21 16:08:06 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/22 17:10:48 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	julia(int percision, t_data *imgage, t_numbers numbers,
 		while (y < numbers.y_max)
 		{
 			numbers.z_real = (x - (numbers.x_max / 2))
-				/ (numbers.y_max / (2 * zoom_factor));
+				/ (numbers.y_max / (2 / zoom_factor));
 			numbers.z_imaginary = (y - (numbers.y_max / 2))
-				/ (numbers.y_max / (2 * zoom_factor));
+				/ (numbers.y_max / (2 / zoom_factor));
 			iterations = get_julia_iterations(numbers, percision);
 			if (iterations < percision)
 			{

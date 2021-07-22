@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/07 15:44:11 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/21 16:07:35 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/22 17:22:07 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	get_mandel_iterations(int percision, t_numbers numbers, float zoom_factor)
 		&& iterations < percision)
 	{
 		numbers.temp = pow(numbers.z_real, 2) - pow(numbers.z_imaginary, 2)
-			+ (numbers.c_real / (numbers.y_max / (2 * zoom_factor)));
+			+ (numbers.c_real / (numbers.y_max / (2 / zoom_factor)));
 		numbers.z_imaginary = 2 * numbers.z_real * numbers.z_imaginary
-			+ (numbers.c_imaginary / (numbers.y_max / (2 * zoom_factor)));
+			+ (numbers.c_imaginary / (numbers.y_max / (2 / zoom_factor)));
 		numbers.z_real = numbers.temp;
 		iterations++;
 	}
