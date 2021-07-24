@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 17:57:38 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/21 17:01:58 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/24 17:34:24 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ void			handdle_inputs(t_inputs *inputs,
 					t_numbers *numbers, char	**argv);
 void			zoom_in(t_vars *vars);
 void			zoom_out(t_vars *vars);
+int				key_hook(int keycode, t_vars *vars);
+int				mouse_hook(int mouse_code, int x, int y, t_vars *vars);
+int				red_cross(void);
 
 #endif

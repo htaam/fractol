@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:48:24 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/10 17:13:13 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/24 15:48:05 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-static int	ft_atoi_aux (char *ptr, long long int signal, int a)
+static int	ft_atoi_aux(char *ptr, long long int signal, int a)
 {
 	long long	result;
 

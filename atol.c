@@ -6,7 +6,7 @@
 /*   By: tmatias <tmatias@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/10 15:53:58 by tmatias           #+#    #+#             */
-/*   Updated: 2021/07/10 17:40:00 by tmatias          ###   ########.fr       */
+/*   Updated: 2021/07/24 15:48:06 by tmatias          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ int	is_float(char	*ptr)
 	return (1);
 }
 
+float	do_math(size_t dotpos, int signal, float result)
+{
+	while (dotpos--)
+		result /= 10;
+	if (signal == -1)
+		result = result * signal;
+	return (result);
+}
+
 float	ft_atol(char	*inputstr)
 {
 	float	result;
@@ -65,11 +74,5 @@ float	ft_atol(char	*inputstr)
 			result = result * 10 + (inputstr[n] - '0');
 		n++;
 	}
-	while (dotpos--)
-	{
-		result /= 10;
-	}
-	if (signal == -1)
-		result = result * signal;
-	return (result);
+	return (do_math(dotpos, signal, result));
 }

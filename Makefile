@@ -9,15 +9,17 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 %.o:%.c
-	$(CC) $(CFLAGS) -Imlx -c -o $@ $<
+	@$(CC) $(CFLAGS) -Imlx -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(MLX) -o $(NAME) $(OBJ) $(MATH)
+	@$(MAKE) -C ./mlx -s
+	@$(CC) $(CFLAGS) $(MLX) -o $(NAME) $(OBJ) $(MATH)
 
 clean:
-	rm -rf $(OBJ)
+	@$(MAKE) clean -C ./mlx -s
+	@rm -rf $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
